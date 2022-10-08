@@ -1,8 +1,6 @@
 // utils.rs
-use near_sdk::{
-    env,
-    PromiseResult,
-};
+use near_sdk::{env, PromiseResult};
+
 /// == TYPES ====================================================================
 /// Account Ids in Near are just strings.
 pub type AccountId = String;
@@ -41,7 +39,7 @@ pub fn assert_self() {
     assert_eq!(caller, current, "Only this contract may call itself");
 }
 /// Asserts that only a single promise was received, and successful
-pub fn assert_single_promise_success(){
+pub fn assert_single_promise_success() {
     assert_eq!(
         env::promise_results_count(),
         1,

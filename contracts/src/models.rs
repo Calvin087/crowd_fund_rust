@@ -1,10 +1,11 @@
 use near_sdk::borsh::{self, BorshDeserialize, BorshSerialize};
 use near_sdk::serde::{Deserialize, Serialize};
+use near_sdk::AccountId;
 
 #[allow(unused_imports)]
 use near_sdk::{env, near_bindgen};
 
-use crate::utils::{AccountId, Money, Timestamp};
+use crate::utils::{Money, Timestamp};
 
 #[derive(Clone, Serialize, Deserialize, BorshDeserialize, BorshSerialize)]
 #[serde(crate = "near_sdk::serde")]
@@ -25,6 +26,8 @@ impl Crowdfund {
     pub fn new(id: i32, title: String, donation_target: u128, description: String) -> Self {
         Crowdfund {
             id,
+            creator: env::predecessor_account_id(),
+            created_at: env::block_timestamp(),
             title,
             donation_target,
             total_donations: 0,
@@ -46,7 +49,7 @@ impl Donation {
     pub fn new() -> Self {
         Donation {
             amount: env::attached_deposit(),
-            donor: env::predecessor_acount_id(),
+            donor: env::predecessor_account_id(),
         }
     }
 }
