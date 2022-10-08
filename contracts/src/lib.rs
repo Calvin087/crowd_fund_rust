@@ -39,6 +39,8 @@ impl Contract {
 
     pub fn list_crowdfunds(&self) -> Vec<Crowdfund> {
         assert_self();
+        // why this exists no idea, possibly assert owner instead.
+
         let crowdfunds = &self.crowdfunds;
         return crowdfunds.to_vec();
     }
@@ -58,6 +60,10 @@ impl Contract {
         self.donations.push(Donation::new());
 
         Promise::new(env::predecessor_account_id()).transfer(transfer_amount);
+        // dumb because this goes back to the transaction signer
+        // Also drains funds from the contract itself and not the caller.
+        // Dumb, need to update this.
+
         env::log_str("money sent");
         // Where does the money go....to the contract?
     }
@@ -71,3 +77,8 @@ impl Contract {
         return crowdfund.total_donations;
     }
 }
+
+// near call crowdfund1.ctorra.testnet add_crowdfund '{"title": "Eliots eye sight", "donation_target": 30, "description":"Raise funds for little Eliot to see again. Loss of sight was caused by an accident to the head"}' --accountId ctorra.testnet
+// near call crowdfund1.ctorra.testnet add_vote '{"id":0}' --accountId ctorra.testnet
+// near call crowdfund1.ctorra.testnet add_donation '{"id":0, "amount":1}' --accountId ctorra.testnet
+// near call crowdfund1.ctorra.testnet list_crowdfunds --accountId crowdfund1.ctorra.testnet
