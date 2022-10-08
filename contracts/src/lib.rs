@@ -78,6 +78,7 @@ impl Contract {
     }
 }
 
+// https://docs.near.org/tutorials/examples/donation
 // near call crowdfund1.ctorra.testnet add_crowdfund '{"title": "Eliots eye sight", "donation_target": 30, "description":"Raise funds for little Eliot to see again. Loss of sight was caused by an accident to the head"}' --accountId ctorra.testnet
 // near call crowdfund1.ctorra.testnet add_vote '{"id":0}' --accountId ctorra.testnet
 // near call crowdfund1.ctorra.testnet add_donation '{"id":0, "amount":1}' --accountId ctorra.testnet
