@@ -84,3 +84,6 @@ impl Contract {
 // near call crowdfund1.ctorra.testnet add_vote '{"id":0}' --accountId ctorra.testnet
 // near call crowdfund1.ctorra.testnet add_donation '{"id":0, "amount":1}' --accountId ctorra.testnet
 // near call crowdfund1.ctorra.testnet list_crowdfunds --accountId crowdfund1.ctorra.testnet
+
+
+ 
